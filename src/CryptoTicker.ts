@@ -1,9 +1,9 @@
+/* eslint-disable import/extensions */
+/* eslint-disable import/no-duplicates */
 import { html, LitElement, property } from 'lit-element';
 
-// eslint-disable-next-line import/no-duplicates
-// eslint-disable-next-line import/extensions
 import { PriceData } from './Traker';
-import './Traker.ts';
+import './Traker.js';
 
 import CARD_STYLES from './styles/card.styles';
 
@@ -20,6 +20,7 @@ export class CryptoTicker extends LitElement {
   data!: Pairs;
 
   render() {
+    if (!this.data) return;
     return html`
       <div class="card">
         <price-tracker .priceData=${this.data.BTCUSD}></price-tracker>

@@ -44,7 +44,7 @@ export class CryptoTicker extends LitElement {
               new BigNumber(c).toFormat(null, 1)}</span
             >
           </div>
-          ><span
+          <span
             class=${classMap({
               changePrice: true,
               success: p > 0,
