@@ -32,8 +32,7 @@ import 'crypto-ticker/crypto-ticker.js';
 ```
 
 ```js preview-story
-export const Simple = () => html`
-  <crypto-ticker .data=${{
+const data = {
   BTCUSD: {
     "e": "24hrTicker",
     "E": 1589800997202,
@@ -109,6 +108,8 @@ export const Simple = () => html`
     "L": 322811005,
     "n": 925270
   }
-}}></crypto-ticker>
+}
+export const Simple = () => html`
+  <crypto-ticker></crypto-ticker>
 `;
 ```

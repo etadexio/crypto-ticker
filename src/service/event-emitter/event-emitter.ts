@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import { IPriceTicker } from '../types';
 
 export class EventEmitter {

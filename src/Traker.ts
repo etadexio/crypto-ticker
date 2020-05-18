@@ -19,7 +19,7 @@ export class CryptoTicker extends LitElement {
   @property({ attribute: false }) priceData?: PriceData;
 
   render() {
-    if (!this.priceData) return;
+    if (!this.priceData?.s) return;
     const { s, c, lastc, p, P } = this.priceData;
     const isPriceRateUp = new BigNumber(c).gte(new BigNumber(lastc));
 

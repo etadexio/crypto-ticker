@@ -1,10 +1,11 @@
+/* eslint-disable import/extensions */
 import { Pair, Exchange, IPriceTicker, ExchangeService } from '../types';
 import {
   getPairSymbol,
   getEventName,
   getEventNameOpposite,
-} from '../utils/mapping';
-import { EventEmitterInstance } from '../event-emitter';
+} from '../utils/mapping.js';
+import { EventEmitterInstance } from '../event-emitter/index.js';
 
 export class BinanceService implements ExchangeService {
   private socket = new WebSocket('wss://stream.binance.com:9443/ws');
