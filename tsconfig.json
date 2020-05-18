@@ -1,4 +1,4 @@
-  {
+{
   "compilerOptions": {
     "target": "es2018",
     "module": "esnext",
@@ -8,7 +8,9 @@
     "strict": true,
     "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
+    "strictPropertyInitialization": false,
     "experimentalDecorators": true,
+    "strictNullChecks": false,
     "importHelpers": true,
     "outDir": "dist"
   },

@@ -11,15 +11,17 @@ const serviceMap = {
 export class TickerService {
   private providers: { [name in Exchange]?: ExchangeService } = {};
 
-  subscribe = (
+  subscribe = async (
     pair: Pair,
     exchange: Exchange,
     event: (data: IPriceTicker) => void
-  ): Function => {
+  ): Promise<Function> => {
     let service: ExchangeService | undefined = this.providers[exchange];
     if (!service) {
+      console.log('init service', exchange);
       service = new serviceMap[exchange]();
       this.providers[exchange] = service;
+      await service.connect();
     }
     const off = EventEmitterInstance.on(getEventName(pair, exchange), event);
     service.subscribe(pair);
@@ -42,7 +44,7 @@ export class TickerService {
     if (available !== undefined && available < 1) {
       const service = this.providers[exchange];
       if (!service) return;
-      service.subscribe(pair);
+      service.unsubscribe(pair);
       service.close();
       delete this.providers[exchange];
     }
