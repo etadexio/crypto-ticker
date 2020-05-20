@@ -1,35 +1,55 @@
 /* eslint-disable import/extensions */
 import { Pair, Exchange, IPriceTicker, ExchangeService } from '../types';
-import {
-  getPairSymbol,
-  getEventName,
-  getEventNameOpposite,
-} from '../utils/mapping.js';
-import { EventEmitterInstance } from '../event-emitter/index.js';
+import { getPairSymbol, getEventNameOpposite } from '../utils/mapping.js';
+import { AbstractProvider } from './AbstractProvider';
 
-export class BinanceService implements ExchangeService {
-  private socket: WebSocket;
+const parseTickerData = (data: any) => {
+  if (data.e !== '24hrTicker') return;
+  const myPair = getEventNameOpposite(data.s.toLowerCase(), Exchange.BINANCE);
+  if (!myPair) {
+    throw new Error(`invalid pair ${myPair}, ${data.s}`);
+  }
+  const { c, o, l, h, v, E, p, P } = data;
+  const event: IPriceTicker = {
+    e: Exchange.BINANCE,
+    s: myPair,
+    c,
+    o,
+    l,
+    h,
+    v,
+    lastc: E,
+    p,
+    P,
+  };
+  return { pair: myPair, tickerData: event };
+};
+
+export class BinanceService extends AbstractProvider
+  implements ExchangeService {
   private ids: { [P in Pair]?: number } = {};
 
+  constructor() {
+    super(Exchange.BINANCE, parseTickerData);
+  }
+
   public subscribe = async (pair: Pair) => {
-    if (this.ids[pair]) {
-      console.log('socket already subscribed', Exchange.BINANCE);
+    if (this.ids[pair] !== undefined) {
+      console.log('pair already subscribed', Exchange.BINANCE, pair);
       return;
     }
     let id = 0;
-
     if (this.ids[pair] !== undefined) {
       id = this.ids[pair] + 1;
     }
+    console.log('subscribe', pair, id);
+    this.ids[pair] = id;
     const data = {
       method: 'SUBSCRIBE',
       params: [`${getPairSymbol(pair, Exchange.BINANCE)}@ticker`],
       id,
     };
-    const sent = this.send(data);
-    if (!sent) return;
-
-    this.ids[pair] = id;
+    this.send(data);
   };
 
   public unsubscribe = (pair: Pair) => {
@@ -42,61 +62,4 @@ export class BinanceService implements ExchangeService {
     if (!sent) return;
     delete this.ids[pair];
   };
-
-  private send(data: any): boolean {
-    if (this.socket.readyState !== 1) {
-      console.log('socket not ready', Exchange.BINANCE);
-      return false;
-    }
-    console.log(data);
-    this.socket.send(JSON.stringify(data));
-    return true;
-  }
-
-  close() {
-    this.socket.close();
-  }
-
-  async connect() {
-    if (!this.socket) {
-      this.socket = new WebSocket('wss://stream.binance.com:9443/ws');
-    }
-    if (this.socket.readyState === 1) return;
-    return new Promise<void>((rs, rj) => {
-      this.socket.onopen = () => {
-        console.log('socket connected', this.socket.readyState);
-        this.listenMessageEvent();
-        rs();
-      };
-    });
-  }
-
-  listenMessageEvent() {
-    this.socket.onmessage = (message: any) => {
-      const data = JSON.parse(message.data);
-      // console.log(data);
-      if (data.e !== '24hrTicker') return;
-      const myPair = getEventNameOpposite(
-        data.s.toLowerCase(),
-        Exchange.BINANCE
-      );
-      if (!myPair) {
-        throw new Error(`invalid pair ${myPair}, ${data.s}`);
-      }
-      const { c, o, l, h, v, E, p, P } = data;
-      const event: IPriceTicker = {
-        e: Exchange.BINANCE,
-        s: myPair,
-        c,
-        o,
-        l,
-        h,
-        v,
-        lastc: E,
-        p,
-        P,
-      };
-      EventEmitterInstance.emit(getEventName(myPair, Exchange.BINANCE), event);
-    };
-  }
 }

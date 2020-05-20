@@ -29,5 +29,4 @@ export interface ExchangeService {
   subscribe: (pair: Pair) => void;
   unsubscribe: (...args: any[]) => void;
   close: () => void;
-  connect: () => Promise<void>;
 }

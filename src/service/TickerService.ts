@@ -19,9 +19,12 @@ export class TickerService {
     let service: ExchangeService | undefined = this.providers[exchange];
     if (!service) {
       console.log('init service', exchange);
-      service = new serviceMap[exchange]();
+      const serviceConstructor = serviceMap[exchange];
+      if (!serviceConstructor) {
+        throw new Error(`unknown service ${exchange}`);
+      }
+      service = new serviceConstructor();
       this.providers[exchange] = service;
-      await service.connect();
     }
     const off = EventEmitterInstance.on(getEventName(pair, exchange), event);
     service.subscribe(pair);
