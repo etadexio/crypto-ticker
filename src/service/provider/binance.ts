@@ -58,8 +58,7 @@ export class BinanceService extends AbstractProvider
       params: [`${getPairSymbol(pair, Exchange.BINANCE)}@ticker`],
       id: this.ids[pair],
     };
-    const sent = this.send(data);
-    if (!sent) return;
+    this.send(data);
     delete this.ids[pair];
   };
 }
