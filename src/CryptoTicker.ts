@@ -1,47 +1,42 @@
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-duplicates */
-import { html, LitElement, property } from 'lit-element';
+import { LitElement, property } from 'lit-element';
 import TickerService from './service';
-import { PriceData } from './Traker';
-import './Traker.js';
-
-import CARD_STYLES from './styles/card.styles';
-import { Pair, Exchange } from './service/types';
-import { IPriceTicker } from './service/types/index';
-
-export interface Pairs {
-  BTCUSD: PriceData;
-  ETHUSD: PriceData;
-  ETHBTC: PriceData;
-}
+import { IPriceTicker, Pair, Exchange } from './service/types/index';
 
 export class CryptoTicker extends LitElement {
-  static styles = [CARD_STYLES];
-
-  @property({ attribute: false })
-  data: Pairs = {
-    BTCUSD: {} as any,
-    ETHUSD: {} as any,
-    ETHBTC: {} as any,
-  };
+  @property({ type: String, attribute: true })
+  pair?: Pair;
+  @property({ type: String, attribute: true })
+  exchange?: Exchange;
 
   connectedCallback() {
     super.connectedCallback();
-    TickerService.subscribe(
-      Pair.BTC_USDT,
-      Exchange.BINANCE,
-      data => (this.data = { ...this.data, BTCUSD: data })
-    );
-    console.log('connected');
+    if (this.pair && this.exchange) {
+      TickerService.subscribe(this.pair, this.exchange, this._onData);
+    }
   }
 
-  render() {
-    return html`
-      <div class="card">
-        <price-tracker .priceData=${this.data.BTCUSD}></price-tracker>
-        <price-tracker .priceData=${this.data.ETHUSD}></price-tracker>
-        <price-tracker .priceData=${this.data.ETHBTC}></price-tracker>
-      </div>
-    `;
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    if (this.pair && this.exchange) {
+      TickerService.unsubscribe(this.pair, this.exchange, this._onData);
+    }
   }
+
+  update(prev: Map<string, any>) {
+    if (prev.has('pair') || prev.has('exchange')) {
+      const pair = prev.get('pair') || this.pair;
+      const exchange = prev.get('exchange') || this.exchange;
+      TickerService.unsubscribe(pair, exchange, this._onData);
+      if (this.pair && this.exchange) {
+        TickerService.subscribe(this.pair, this.exchange, this._onData);
+      }
+    }
+  }
+
+  private _onData = (data: IPriceTicker) => {
+    const evt = new CustomEvent('stream', { detail: data });
+    this.dispatchEvent(evt);
+  };
 }
