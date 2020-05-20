@@ -1,29 +1,40 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en-GB">
-<head>
-  <meta charset="utf-8">
-  <style>
-    body {
-      background: #fafafa;
-    }
-  </style>
-</head>
-<body>
-  <div id="demo"></div>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      body {
+        background: #fafafa;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="demo"></div>
 
-  <script type="module">
-    import { html, render } from 'lit-html';
-    import '../dist/crypto-ticker.js';
+    <script type="module">
+      import { html, render } from 'lit-html';
+      import '../dist/crypto-ticker.js';
 
-    const title = 'Hello owc World!';
-    render(
-      html`
-        <crypto-ticker .title=${title}>
-          some more light-dom
-        </crypto-ticker>
-      `,
-      document.querySelector('#demo')
-    );
-  </script>
-</body>
+      const title = 'Hello owc World!';
+      const handleStream = ({ detail }) => {
+        const elms = document.querySelectorAll('.price');
+
+        elms.forEach(elm => {
+          elm.innerText = `$ ${Number(detail.close).toFixed(4)}`;
+        });
+      };
+
+      render(
+        html`
+          <crypto-ticker
+            pair="BTC_USDT"
+            exchange="BINANCE"
+            @stream=${handleStream}
+          ></crypto-ticker>
+          <span class="price">loading...</span>
+        `,
+        document.querySelector('#demo')
+      );
+    </script>
+  </body>
 </html>
