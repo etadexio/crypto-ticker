@@ -8,7 +8,7 @@ export class CryptoTicker extends LitElement {
   @property({ type: String, attribute: true })
   pair?: Pair;
   @property({ type: String, attribute: true })
-  exchange?: Exchange;
+  exchange: Exchange = Exchange.BINANCE;
 
   connectedCallback() {
     super.connectedCallback();

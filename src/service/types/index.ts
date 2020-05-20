@@ -1,5 +1,6 @@
 export enum Pair {
   BTC_USDT = 'BTC_USDT',
+  ETH_USDT = 'ETH_USDT',
 }
 
 export enum Exchange {
@@ -9,6 +10,7 @@ export enum Exchange {
 export const pairMap = {
   [Exchange.BINANCE]: {
     [Pair.BTC_USDT]: 'btcusdt',
+    [Pair.ETH_USDT]: 'ethusdt',
   },
 };
 
