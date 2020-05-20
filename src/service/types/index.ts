@@ -13,7 +13,6 @@ export const pairMap = {
     [Pair.ETH_USDT]: 'ethusdt',
   },
 };
-
 export interface IPriceTicker {
   exchange: Exchange;
   pair: Pair;

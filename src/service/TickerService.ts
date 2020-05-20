@@ -26,9 +26,9 @@ export class TickerService {
       service = new serviceConstructor();
       this.providers[exchange] = service;
     }
-    const off = EventEmitterInstance.on(getEventName(pair, exchange), event);
+    EventEmitterInstance.on(getEventName(pair, exchange), event);
     service.subscribe(pair);
-    return off;
+    return () => this.unsubscribe(pair, exchange, event);
   };
 
   unsubscribe = (
