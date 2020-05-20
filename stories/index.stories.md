@@ -44,15 +44,20 @@ yarn add crypto-ticker
 import 'crypto-ticker/crypto-ticker.js';
 ```
 
+### Example
+
 ```js preview-story
 
 const handleStream = ({detail}) => {
-  const elm = document.getElementById('price')
-  elm.innerText = `$ ${Number(detail.close).toFixed(4)}`
+  const elms = document.querySelectorAll('.price')
+  
+  elms.forEach(elm => {
+    elm.innerText = `$ ${Number(detail.close).toFixed(4)}`
+  })
 }
 
 export const Simple = () => html`
-  <crypto-ticker pair="BTC_USDT" exchange="BINANCE"  @stream=${handleStream}></crypto-ticker>
-  <span id="price" />
+  <crypto-ticker pair="BTC_USDT" exchange="BINANCE"   @stream=${handleStream}></crypto-ticker>
+  <span class="price">loading...</span>
 `;
 ```

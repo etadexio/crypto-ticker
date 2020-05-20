@@ -18,7 +18,7 @@ export class TickerService {
   ): Function => {
     let service: ExchangeService | undefined = this.providers[exchange];
     if (!service) {
-      console.log('init service', exchange);
+      //('init service', exchange)
       const serviceConstructor = serviceMap[exchange];
       if (!serviceConstructor) {
         throw new Error(`unknown service ${exchange}`);
