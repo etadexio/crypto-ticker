@@ -2,6 +2,10 @@
 
 A simple web-component to get real time crypto price data.
 
+## Demos
+
+- [React](https://codesandbox.io/s/react-crypto-ticker-fjjwo)
+
 ## Support
 
 Can be used in any framework like `React`, `Vue` or in static `html`
