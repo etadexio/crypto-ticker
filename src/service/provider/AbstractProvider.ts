@@ -30,7 +30,7 @@ export abstract class AbstractProvider {
     }
     if (this.isConnected()) return;
     this.socket.onopen = () => {
-      console.log('socket connected', this.socket.readyState);
+      //('socket connected', this.socket.readyState)
       this.listenMessageEvent();
       this.sendPendingRequest();
     };
@@ -52,15 +52,15 @@ export abstract class AbstractProvider {
   private sendPendingRequest() {
     while (this.pendingRequest.length) {
       const data = this.pendingRequest.shift();
-      console.log('sending queued request', data);
+      //('sending queued request', data)
       this.send(data);
     }
   }
 
   protected send(data: any): boolean {
     if (!this.socket || this.socket.readyState !== 1) {
-      console.log(Exchange.BINANCE, 'socket not ready');
-      console.log(Exchange.BINANCE, 'queuing request');
+      //(Exchange.BINANCE, 'socket not ready')
+      //(Exchange.BINANCE, 'queuing request')
       this.pendingRequest.push(data);
       return false;
     }

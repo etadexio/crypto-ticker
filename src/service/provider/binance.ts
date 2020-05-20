@@ -35,14 +35,14 @@ export class BinanceService extends AbstractProvider
 
   public subscribe = async (pair: Pair) => {
     if (this.ids[pair] !== undefined) {
-      console.log('pair already subscribed', Exchange.BINANCE, pair);
+      //('pair already subscribed', Exchange.BINANCE, pair)
       return;
     }
     let id = 0;
     if (this.ids[pair] !== undefined) {
       id = this.ids[pair] + 1;
     }
-    console.log('subscribe', pair, id);
+    //('subscribe', pair, id)
     this.ids[pair] = id;
     const data = {
       method: 'SUBSCRIBE',
