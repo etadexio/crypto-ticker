@@ -11,11 +11,11 @@ const serviceMap = {
 export class TickerService {
   private providers: { [name in Exchange]?: ExchangeService } = {};
 
-  subscribe = async (
+  subscribe = (
     pair: Pair,
     exchange: Exchange,
     event: (data: IPriceTicker) => void
-  ): Promise<Function> => {
+  ): Function => {
     let service: ExchangeService | undefined = this.providers[exchange];
     if (!service) {
       console.log('init service', exchange);
