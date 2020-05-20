@@ -13,16 +13,16 @@ export const pairMap = {
 };
 
 export interface IPriceTicker {
-  e: Exchange;
-  s: Pair;
-  c: number;
-  o: number;
-  l: number;
-  h: number;
-  v: number;
-  lastc: number;
-  p: number;
-  P: number;
+  exchange: Exchange;
+  pair: Pair;
+  close: number;
+  open: number;
+  low: number;
+  high: number;
+  volume: number;
+  timestamp: number;
+  percent: number;
+  percent_abs: number;
 }
 
 export interface ExchangeService {

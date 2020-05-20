@@ -11,16 +11,16 @@ const parseTickerData = (data: any) => {
   }
   const { c, o, l, h, v, E, p, P } = data;
   const event: IPriceTicker = {
-    e: Exchange.BINANCE,
-    s: myPair,
-    c,
-    o,
-    l,
-    h,
-    v,
-    lastc: E,
-    p,
-    P,
+    exchange: Exchange.BINANCE,
+    pair: myPair,
+    close: c,
+    open: o,
+    low: l,
+    high: h,
+    volume: v,
+    timestamp: E,
+    percent: p,
+    percent_abs: P,
   };
   return { pair: myPair, tickerData: event };
 };
