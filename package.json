@@ -65,5 +65,10 @@
       "prettier --write",
       "git add"
     ]
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/etadexio/crypto-ticker"
+  },
+  "homepage": "https://github.com/etadexio/crypto-ticker#readme"
 }
