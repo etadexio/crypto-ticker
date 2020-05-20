@@ -1,6 +1,6 @@
 {
   "name": "web-crypto-ticker",
-  "version": "0.0.1-alpha",
+  "version": "0.0.1-beta",
   "description": "web-component for real time crypto price data ",
   "author": "crypto-ticker",
   "license": "MIT",
