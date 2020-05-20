@@ -1,12 +1,13 @@
-import { IPriceTicker, Exchange, Pair } from '../types';
-import { getEventName } from '../utils/mapping';
-import { EventEmitterInstance } from '../event-emitter';
+import { IPriceTicker, Exchange, Pair } from "../types";
+import { getEventName } from "../utils/mapping";
+import { EventEmitterInstance } from "../event-emitter";
 
 const wsUrlMap = {
-  [Exchange.BINANCE]: 'wss://stream.binance.com:9443/ws',
+  [Exchange.BINANCE]: "wss://stream.binance.com:9443/ws",
 };
 
 export abstract class AbstractProvider {
+  // @ts-ignore
   private socket: WebSocket;
   private pendingRequest: any[] = [];
   constructor(

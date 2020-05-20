@@ -1,3 +1,3 @@
-import { CryptoTicker } from './CryptoTicker.js';
+import { CryptoTicker } from "./CryptoTicker.js";
 
-window.customElements.define('crypto-ticker', CryptoTicker);
+window.customElements.define("crypto-ticker", CryptoTicker);

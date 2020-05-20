@@ -1,10 +1,10 @@
 /* eslint-disable import/extensions */
-import { Pair, Exchange, IPriceTicker, ExchangeService } from '../types';
-import { getPairSymbol, getEventNameOpposite } from '../utils/mapping.js';
-import { AbstractProvider } from './AbstractProvider';
+import { Pair, Exchange, IPriceTicker, ExchangeService } from "../types";
+import { getPairSymbol, getEventNameOpposite } from "../utils/mapping.js";
+import { AbstractProvider } from "./AbstractProvider";
 
 const parseTickerData = (data: any) => {
-  if (data.e !== '24hrTicker') return;
+  if (data.e !== "24hrTicker") return;
   const myPair = getEventNameOpposite(data.s.toLowerCase(), Exchange.BINANCE);
   if (!myPair) {
     throw new Error(`invalid pair ${myPair}, ${data.s}`);
@@ -30,6 +30,7 @@ export class BinanceService extends AbstractProvider
   private ids: { [P in Pair]?: number } = {};
 
   constructor() {
+    // @ts-ignore
     super(Exchange.BINANCE, parseTickerData);
   }
 
@@ -40,12 +41,13 @@ export class BinanceService extends AbstractProvider
     }
     let id = 0;
     if (this.ids[pair] !== undefined) {
+      // @ts-ignore
       id = this.ids[pair] + 1;
     }
     //('subscribe', pair, id)
     this.ids[pair] = id;
     const data = {
-      method: 'SUBSCRIBE',
+      method: "SUBSCRIBE",
       params: [`${getPairSymbol(pair, Exchange.BINANCE)}@ticker`],
       id,
     };
@@ -54,7 +56,7 @@ export class BinanceService extends AbstractProvider
 
   public unsubscribe = (pair: Pair) => {
     const data = {
-      method: 'UNSUBSCRIBE',
+      method: "UNSUBSCRIBE",
       params: [`${getPairSymbol(pair, Exchange.BINANCE)}@ticker`],
       id: this.ids[pair],
     };

@@ -1,12 +1,10 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const types_1 = require("../types");
-const mapping_1 = require("../utils/mapping");
-const event_emitter_1 = require("../event-emitter");
+import { Exchange } from "../types";
+import { getEventName } from "../utils/mapping";
+import { EventEmitterInstance } from "../event-emitter";
 const wsUrlMap = {
-    [types_1.Exchange.BINANCE]: 'wss://stream.binance.com:9443/ws',
+    [Exchange.BINANCE]: "wss://stream.binance.com:9443/ws",
 };
-class AbstractProvider {
+export class AbstractProvider {
     constructor(exchange, parseData) {
         this.exchange = exchange;
         this.parseData = parseData;
@@ -37,7 +35,7 @@ class AbstractProvider {
             const parsed = this.parseData(data);
             if (!parsed)
                 return;
-            event_emitter_1.EventEmitterInstance.emit(mapping_1.getEventName(parsed.pair, types_1.Exchange.BINANCE), parsed.tickerData);
+            EventEmitterInstance.emit(getEventName(parsed.pair, Exchange.BINANCE), parsed.tickerData);
         };
     }
     sendPendingRequest() {
@@ -58,4 +56,4 @@ class AbstractProvider {
         return true;
     }
 }
-exports.AbstractProvider = AbstractProvider;
+//# sourceMappingURL=AbstractProvider.js.map

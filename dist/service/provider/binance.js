@@ -1,19 +1,17 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 /* eslint-disable import/extensions */
-const types_1 = require("../types");
-const mapping_js_1 = require("../utils/mapping.js");
-const AbstractProvider_1 = require("./AbstractProvider");
+import { Exchange } from "../types";
+import { getPairSymbol, getEventNameOpposite } from "../utils/mapping.js";
+import { AbstractProvider } from "./AbstractProvider";
 const parseTickerData = (data) => {
-    if (data.e !== '24hrTicker')
+    if (data.e !== "24hrTicker")
         return;
-    const myPair = mapping_js_1.getEventNameOpposite(data.s.toLowerCase(), types_1.Exchange.BINANCE);
+    const myPair = getEventNameOpposite(data.s.toLowerCase(), Exchange.BINANCE);
     if (!myPair) {
         throw new Error(`invalid pair ${myPair}, ${data.s}`);
     }
     const { c, o, l, h, v, E, p, P } = data;
     const event = {
-        exchange: types_1.Exchange.BINANCE,
+        exchange: Exchange.BINANCE,
         pair: myPair,
         close: c,
         open: o,
@@ -26,9 +24,10 @@ const parseTickerData = (data) => {
     };
     return { pair: myPair, tickerData: event };
 };
-class BinanceService extends AbstractProvider_1.AbstractProvider {
+export class BinanceService extends AbstractProvider {
     constructor() {
-        super(types_1.Exchange.BINANCE, parseTickerData);
+        // @ts-ignore
+        super(Exchange.BINANCE, parseTickerData);
         this.ids = {};
         this.subscribe = async (pair) => {
             if (this.ids[pair] !== undefined) {
@@ -37,21 +36,22 @@ class BinanceService extends AbstractProvider_1.AbstractProvider {
             }
             let id = 0;
             if (this.ids[pair] !== undefined) {
+                // @ts-ignore
                 id = this.ids[pair] + 1;
             }
             //('subscribe', pair, id)
             this.ids[pair] = id;
             const data = {
-                method: 'SUBSCRIBE',
-                params: [`${mapping_js_1.getPairSymbol(pair, types_1.Exchange.BINANCE)}@ticker`],
+                method: "SUBSCRIBE",
+                params: [`${getPairSymbol(pair, Exchange.BINANCE)}@ticker`],
                 id,
             };
             this.send(data);
         };
         this.unsubscribe = (pair) => {
             const data = {
-                method: 'UNSUBSCRIBE',
-                params: [`${mapping_js_1.getPairSymbol(pair, types_1.Exchange.BINANCE)}@ticker`],
+                method: "UNSUBSCRIBE",
+                params: [`${getPairSymbol(pair, Exchange.BINANCE)}@ticker`],
                 id: this.ids[pair],
             };
             this.send(data);
@@ -59,4 +59,4 @@ class BinanceService extends AbstractProvider_1.AbstractProvider {
         };
     }
 }
-exports.BinanceService = BinanceService;
+//# sourceMappingURL=binance.js.map

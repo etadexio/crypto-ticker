@@ -1,20 +1,24 @@
-{
-  "compilerOptions": {
-    "target": "es2018",
-    "module": "commonjs",
-    "rootDir": "./src",
-    "moduleResolution": "node",
-    "noEmitOnError": true,
-    "lib": ["es2017", "dom"],
-    "strict": true,
-    "esModuleInterop": false,
-    "allowSyntheticDefaultImports": true,
-    "strictPropertyInitialization": false,
-    "experimentalDecorators": true,
-    "strictNullChecks": false,
-    "importHelpers": true,
-    "declaration": true,
-    "outDir": "dist"
-  },
-  "include": ["src"]
-}
+  {
+    "compilerOptions": {
+      "target": "es2018",
+      "module": "esnext",
+      "moduleResolution": "node",
+      "noEmitOnError": true,
+      "lib": [
+        "es2017",
+        "dom"
+      ],
+      "strict": true,
+      "esModuleInterop": false,
+      "allowSyntheticDefaultImports": true,
+      "experimentalDecorators": true,
+      "importHelpers": true,
+      "outDir": "dist",
+      "rootDir": "src",
+      "sourceMap": true,
+      "inlineSources": true
+    },
+    "include": [
+      "src"
+    ]
+  }

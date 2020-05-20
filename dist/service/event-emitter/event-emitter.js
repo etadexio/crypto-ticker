@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-class EventEmitter {
+export class EventEmitter {
     constructor() {
         this.listeners = {};
         this.on = (type, fn) => {
@@ -31,4 +29,4 @@ class EventEmitter {
         };
     }
 }
-exports.EventEmitter = EventEmitter;
+//# sourceMappingURL=event-emitter.js.map
