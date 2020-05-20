@@ -3,28 +3,23 @@
   "tags": [
     {
       "name": "crypto-ticker",
-      "description": "A component with a title and an action counter",
+      "description": "a component for realtime crypto prices",
       "properties": [
         {
-          "name": "title",
+          "name": "pair",
           "type": "String",
-          "description": "The title of your component",
-          "default": "Hey there"
+          "description": "trading pair"
         },
         {
-          "name": "counter",
-          "type": "Number",
-          "description": "An action counter",
-          "default": 0
+          "name": "exchange",
+          "type": "String",
+          "description": "exchange provider",
+          "default": "BINANCE"
         }
       ],
-      "events": [],
-      "slots": [],
-      "cssProperties": [
+      "events": [
         {
-          "name": "--crypto-ticker-text-color",
-          "description": "Main Text Color",
-          "type": "Color"
+          "name": "stream"
         }
       ]
     }
