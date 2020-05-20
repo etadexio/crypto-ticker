@@ -1,4 +1,6 @@
-export class EventEmitter {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class EventEmitter {
     constructor() {
         this.listeners = {};
         this.on = (type, fn) => {
@@ -29,3 +31,4 @@ export class EventEmitter {
         };
     }
 }
+exports.EventEmitter = EventEmitter;

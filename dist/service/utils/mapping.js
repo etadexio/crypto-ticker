@@ -1,13 +1,15 @@
-import { pairMap } from '../types';
-export const getPairSymbol = (pair, exchange) => {
-    return pairMap[exchange][pair];
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const types_1 = require("../types");
+exports.getPairSymbol = (pair, exchange) => {
+    return types_1.pairMap[exchange][pair];
 };
-export const getEventName = (pair, exchange) => {
+exports.getEventName = (pair, exchange) => {
     return `${exchange}-${pair}`;
 };
-export const getEventNameOpposite = (pair, exchange) => {
+exports.getEventNameOpposite = (pair, exchange) => {
     let myPair = null;
-    const pairs = pairMap[exchange];
+    const pairs = types_1.pairMap[exchange];
     Object.keys(pairs).some(key => {
         if (pairs[key] === pair) {
             myPair = key;
