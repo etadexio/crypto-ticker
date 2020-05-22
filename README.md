@@ -4,7 +4,7 @@ A simple web-component to get real time crypto price data.
 
 ## Demos
 
-- [React](https://codesandbox.io/s/react-crypto-ticker-fjjwo)
+- [React](https://jsfiddle.net/hfa00/wu5ps2hy/34/)
 
 ## Support
 
