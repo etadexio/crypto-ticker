@@ -1,6 +1,6 @@
 {
   "name": "web-crypto-ticker",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "web-component for real time crypto price data ",
   "author": "etadex.io",
   "license": "MIT",
