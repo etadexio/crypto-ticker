@@ -4,7 +4,6 @@ import typescript from '@rollup/plugin-typescript';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
-import pkg from './package.json';
 
 const extensions = ['.js', '.jsx', '.ts', '.tsx'];
 
@@ -21,7 +20,10 @@ export default merge(baseConfig, {
   plugins: [
     peerDepsExternal(),
     resolve({ extensions }),
-    typescript({}),
+    typescript({
+      declaration: true,
+      emitDeclarationOnly: true,
+    }),
     commonjs({
       include: /node_modules/,
     }),
