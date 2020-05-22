@@ -1,5 +1,5 @@
-import { Pair, ExchangeService } from "../types";
-import { AbstractProvider } from "./AbstractProvider";
+import { Pair, ExchangeService } from '../types';
+import { AbstractProvider } from './AbstractProvider';
 export declare class BinanceService extends AbstractProvider implements ExchangeService {
     private ids;
     constructor();
