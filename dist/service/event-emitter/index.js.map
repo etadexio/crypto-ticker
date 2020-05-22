@@ -1,1 +1,0 @@
-{"version":3,"file":"index.js","sourceRoot":"","sources":["../../../src/service/event-emitter/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,YAAY,EAAE,MAAM,oBAAoB,CAAC;AAClD,MAAM,CAAC,MAAM,oBAAoB,GAAG,IAAI,YAAY,EAAE,CAAC","sourcesContent":["import { EventEmitter } from './event-emitter.js';\nexport const EventEmitterInstance = new EventEmitter();\n"]}

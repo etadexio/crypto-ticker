@@ -1,1 +1,0 @@
-{"version":3,"file":"index.js","sourceRoot":"","sources":["../src/index.ts"],"names":[],"mappings":"AAAA,OAAO,iBAAiB,CAAC;AACzB,oDAAoD","sourcesContent":["import \"./crypto-ticker\";\n// export { CryptoTicker } from \"./CryptoTicker.js\";\n"]}
