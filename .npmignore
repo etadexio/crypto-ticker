@@ -20,6 +20,16 @@
 /out-tsc/
 .build
 
+src
 demo
 .storybook
 stories
+rollup.config.ts
+tsconfig.json
+karma.conf.js
+.babelrc
+test
+yarn.lock
+.editorconfig
+.gitignore
+custom-elements.json
