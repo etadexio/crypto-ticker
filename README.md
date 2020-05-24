@@ -51,9 +51,9 @@ export interface IPriceTicker {
 ## Installation
 
 ```bash
-npm i crypto-ticker
+npm i web-crypto-ticker
 #or
-yarn add crypto-ticker
+yarn add web-crypto-ticker
 ```
 
 ## Usage
