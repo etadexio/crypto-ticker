@@ -32,12 +32,12 @@ LTCBTC
 BNBBTC
 NEOBTC
 EOSETH
-
 ```
 
+<details><summary>Show me more</summary>
+<p>
 
-<details>
-  <summary>Show me more</summary>
+```
 QTUMETH
 SNTETH
 BNTETH
@@ -841,7 +841,10 @@ HBARBUSD
 MATICBUSD
 WRXBUSD
 ZILBUSD
+```
+
 </details>
+</p>
 
 ## Data structure
 
