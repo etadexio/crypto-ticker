@@ -879,7 +879,7 @@ yarn add web-crypto-ticker
 </script>
 
 <crypto-ticker
-  pair="BTC_USDT"
+  pair="BTCUSDT"
   exchange="BINANCE"
   stream="onStream()"
 ></crypto-ticker>
