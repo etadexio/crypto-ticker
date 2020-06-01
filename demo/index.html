@@ -13,7 +13,7 @@
 
     <script type="module">
       import { html, render } from 'lit-html';
-      import '../dist/crypto-ticker.js';
+      import '../dist/index.js';
 
       const title = 'Hello owc World!';
       const handleStream = ({ detail }) => {
@@ -26,11 +26,11 @@
 
       render(
         html`
-          <crypto-ticker
-            pair="BTC_USDT"
+          <web-crypto-ticker
+            pair="BTCUSDT"
             exchange="BINANCE"
             @stream=${handleStream}
-          ></crypto-ticker>
+          ></web-crypto-ticker>
           <span class="price">loading...</span>
         `,
         document.querySelector('#demo')

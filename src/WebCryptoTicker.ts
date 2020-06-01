@@ -2,7 +2,7 @@ import { LitElement, property } from "lit-element";
 import TickerService from "./service";
 import { IPriceTicker, Pair, Exchange } from "./service/types/index";
 
-export class CryptoTicker extends LitElement {
+export class WebCryptoTicker extends LitElement {
   @property({ type: String, attribute: true })
   pair?: Pair;
   @property({ type: String, attribute: true })

@@ -33,3 +33,4 @@ yarn.lock
 .editorconfig
 .gitignore
 custom-elements.json
+scripts

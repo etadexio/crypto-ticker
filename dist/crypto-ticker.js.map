@@ -1,0 +1,1 @@
+{"version":3,"file":"crypto-ticker.js","sourceRoot":"","sources":["../src/crypto-ticker.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,YAAY,EAAE,MAAM,mBAAmB,CAAC;AAEjD,MAAM,CAAC,cAAc,CAAC,MAAM,CAAC,eAAe,EAAE,YAAY,CAAC,CAAC","sourcesContent":["import { CryptoTicker } from \"./CryptoTicker.js\";\n\nwindow.customElements.define(\"crypto-ticker\", CryptoTicker);\n"]}

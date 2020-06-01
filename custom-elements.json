@@ -2,7 +2,7 @@
   "version": 2,
   "tags": [
     {
-      "name": "crypto-ticker",
+      "name": "web-crypto-ticker",
       "description": "a component for realtime crypto prices",
       "properties": [
         {

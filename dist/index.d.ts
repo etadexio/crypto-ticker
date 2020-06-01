@@ -1,1 +1,1 @@
-import "./crypto-ticker";
+import "./web-crypto-ticker";
