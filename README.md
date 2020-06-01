@@ -1,4 +1,4 @@
-# \<crypto-ticker>
+# \<web-crypto-ticker>
 
 A simple web-component to get real time crypto price data.
 
@@ -878,11 +878,11 @@ yarn add web-crypto-ticker
   import 'web-crypto-ticker';
 </script>
 
-<crypto-ticker
+<web-crypto-ticker
   pair="BTCUSDT"
   exchange="BINANCE"
   stream="onStream()"
-></crypto-ticker>
+></web-crypto-ticker>
 ```
 
 ## Demoing with Storybook
